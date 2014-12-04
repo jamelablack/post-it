@@ -1,5 +1,6 @@
-class PostsController < ApplicationController::Base
+class PostsController < ActionController::Base
   def index
+  	@posts = Post.all
 
   end
 
@@ -7,4 +8,19 @@ class PostsController < ApplicationController::Base
   	@post = Post.find(params[:id])
 
   end
+
+  def new
+	end
+
+  def create
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+
+
 end

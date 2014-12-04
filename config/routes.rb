@@ -6,6 +6,6 @@ PostitTemplate::Application.routes.draw do
   # get '/posts/:id', to: 'posts#show'
 
   resources :posts, except: [:destroy] do
-  	resources :comments, only [:create]
-
+  	resources :comments, only: [:create]
+	end
 end

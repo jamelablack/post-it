@@ -1,1 +1,14 @@
-<h4> Hi there, you're viewing <%= @post.title %></h4>
+<p>
+	<% @post.categories.each do |category| %>
+		<span class="badge"><%= category.name %></span>
+		<% end %>
+
+	<%= render @post.categories %>
+</p>
+
+<%= render 'shared/content_title', title: @post.title %>
+
+<p>
+	<%= @post.description %>
+</p>
+<br/>
