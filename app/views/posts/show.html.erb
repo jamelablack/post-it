@@ -1,17 +1,32 @@
 <p class='pull-right'>
-	[<%= link_to 'edit this post', edit_post_path(@post)%>]
+	[<%= link_to 'edit this post', edit_post_path(@post)%>
 
-<p>
-	<% @post.categories.each do |category| %>
-		<span class="badge"><%= category.name %></span>
-		<% end %>
-
-	<%= render @post.categories %>
 </p>
 
+	<%= render @post.categories %>
 <%= render 'shared/content_title', title: @post.title %>
 
 <p>
 	<%= @post.description %>
 </p>
 <br/>
+
+<%= form_for [@post, @comment] do |f| %>
+	<%= render 'shared/errors', obj: @comment %>
+	<div class='control-group'>
+		<%= f.label "Leave a Comment" %>
+		<%= f.text_area :body, rows: 3, class: 'span4' %>
+	</div>
+	<%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% end %>
+
+
+<h5>Comments:</h5>
+<% @post.comments.each do |comment| %>
+	<div class="well span8">
+		<em>"<%= comment.body %>"</em>
+		<br/>
+		<span class='quiet'>by</span> <%= comment.creator.username %>
+		<small>at <%= comment.created_at %></small>
+	</div>
+<% end %>
