@@ -16,6 +16,8 @@
 			<%= link_to category.name, category_path(category)%>
 		 </li>
 		 <%end%>
+		</ul>
+ <% if logged_in? %>
 	<li class='divider'></li>
 	<li>
 		<%= link_to(new_category_path) do %>
@@ -24,8 +26,22 @@
 		<% end %>
 		</li>
 	</ul>
+
+<% end %>
 </div>
 
-<div class='nav_item'>
-	<%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
-</div>
+<% if logged_in? %>
+	<div class='nav_item'>
+		<%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
+	</div>
+	<div class='nav_item'>
+		<%= link_to 'Log Out', logout_path, class: 'btn btn-small' %>
+	</div>
+<% else #logged out %>
+	<div class='nav_item'>
+		<%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
+	</div>
+	<div class='nav_item'>
+		<%= link_to 'Log In', login_path, class: 'btn btn-small' %>
+	</div>
+	<% end %>

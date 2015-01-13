@@ -1,5 +1,7 @@
-<p class='pull-right'>
-	<%= link_to 'edit this post', edit_post_path(@post)%>
+<% if logged_in? %>
+	<p class='pull-right'>
+		<%= link_to 'edit this post', edit_post_path(@post)%>
+<% end %>
 
 </p>
 
@@ -10,14 +12,15 @@
 	<%= @post.description %>
 </p>
 <br/>
-
-<%= form_for [@post, @comment] do |f| %>
-	<%= render 'shared/errors', obj: @comment %>
-	<div class='control-group'>
-		<%= f.label "Leave a Comment" %>
-		<%= f.text_area :body, rows: 3, class: 'span4' %>
-	</div>
-	<%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% if logged_in? %>
+	<%= form_for [@post, @comment] do |f| %>
+		<%= render 'shared/errors', obj: @comment %>
+		<div class='control-group'>
+			<%= f.label "Leave a Comment" %>
+			<%= f.text_area :body, rows: 3, class: 'span4' %>
+		</div>
+		<%= f.submit "Create Comment", class: 'btn btn-primary' %>
+	<% end %>
 <% end %>
 
 
