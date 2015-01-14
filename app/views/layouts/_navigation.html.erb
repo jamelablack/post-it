@@ -2,9 +2,7 @@
   <li>
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
-  <li>
-    <%= link_to 'link', '' %>
-  </li>
+
 </ul>
 <div class='btn-group nav_item'>
 	<%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
@@ -16,7 +14,6 @@
 			<%= link_to category.name, category_path(category)%>
 		 </li>
 		 <%end%>
-		</ul>
  <% if logged_in? %>
 	<li class='divider'></li>
 	<li>
@@ -26,7 +23,6 @@
 		<% end %>
 		</li>
 	</ul>
-
 <% end %>
 </div>
 
@@ -34,8 +30,31 @@
 	<div class='nav_item'>
 		<%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
 	</div>
-	<div class='nav_item'>
-		<%= link_to 'Log Out', logout_path, class: 'btn btn-small' %>
+	<div class='btn-group nav_item'>
+		<%= link_to('', class: 'btn btn-small dropdown=toggle', 'data-toggle' => 'dropdown') do %>
+		<%= current_user.username %>
+		<span class='caret'></span>
+		<% end %>
+		<ul class='dropdown-menu'>
+			<li>
+				<%= link_to edit_user_path(current_user) do %>
+				<i class='icon-pencil'></i>
+				Edit profile
+				<% end %>
+			</li>
+			<li>
+				<%= link_to user_path(current_user) do %>
+				<i class='icon-user'></i>
+				View profile
+				<% end %>
+			</li>
+			<li>
+				<%= link_to logout_path do %>
+				<i class='icon-circle-arrow-left'></i>
+				Logout
+				<% end %>
+			</li>
+		</ul>
 	</div>
 <% else #logged out %>
 	<div class='nav_item'>
@@ -43,5 +62,5 @@
 	</div>
 	<div class='nav_item'>
 		<%= link_to 'Log In', login_path, class: 'btn btn-small' %>
-	</div>
 	<% end %>
+</div>
