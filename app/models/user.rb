@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def to_slug(name)
+	def to_slug(username)
 		str = username.strip
 		str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
 		str.gsub! /-+/, "-"
