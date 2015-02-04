@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 	end
 
 	def set_post
-		@user = User.find(params[:id])
+		@user = User.find_by slug: params[:id]
 	end
 
 	def require_same_user
