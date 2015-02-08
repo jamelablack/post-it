@@ -1,4 +1,3 @@
-#Using Concerns
 module Voteable
 	extend ActiveSupport::Concern
 
