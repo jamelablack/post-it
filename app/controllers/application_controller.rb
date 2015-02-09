@@ -28,6 +28,9 @@ class ApplicationController < ActionController::Base
 		flash[:error] = "Sawry.. you can't do that!"
 		redirect_to root_path
 	end
+  def require_creator
+		access_denied unless logged_in? and (@post.creator == current_user || current_user.admin?)
+	end
 
 end
 
